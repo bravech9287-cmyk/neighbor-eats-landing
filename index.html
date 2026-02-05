@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>네이보 이츠 | 기다림 없는 점심, 숨쉬는 식당</title>
+    <meta name="description" content="예약도, 광고도 아닙니다. 점심시간 지금 바로 들어갈 수 있는 동네 식당을 자동으로 연결합니다. 베타 신청하고 혜택받으세요!">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="네이보 이츠 - Neighbor Eats">
+    <meta property="og:description" content="기다림 없는 점심, 숨쉬는 식당. 점심시간 혁신을 경험하세요.">
+    <!-- <meta property="og:image" content="이미지경로"> -->
+
+    <!-- Fonts -->
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#F97316',
+                        'primary-hover': '#EA580C',
+                        'text-dark': '#1F2937',
+                        'text-gray': '#6B7280',
+                    },
+                    fontFamily: {
+                        sans: ['Pretendard', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Pretendard', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Utility for initial hidden state before animation */
+        .animate-on-scroll {
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body class="bg-[#F9FAFB] text-text-dark">
+
+    <!-- 1. Header Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 shadow-sm transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 py-2 md:py-3 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <img src="logo.png" alt="Neighbor Eats Logo" class="h-10 md:h-12">
+                <div class="flex flex-col">
+                    <span class="font-bold text-xl md:text-2xl text-gray-900 leading-tight">Neighbor Eats</span>
+                    <span class="text-[10px] md:text-xs text-primary font-bold tracking-tight">기다림없는 점심, 숨쉬는 식당</span>
+                </div>
+            </div>
+            <button onclick="document.getElementById('beta-signup').scrollIntoView({behavior: 'smooth'})"
+                class="bg-primary hover:bg-primary-hover text-white px-5 py-2 md:px-6 md:py-2 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-md text-sm md:text-base">
+                Beta 신청하기
+            </button>
+        </div>
+    </nav>
+
+    <!-- 2. Hero Section -->
+    <section class="relative pt-32 pb-20 px-4 min-h-[80vh] flex items-center justify-center overflow-hidden">
+        <!-- Hero Background Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="hero-bg.png" alt="Crowded restaurant line" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/60 backdrop-blur-[2px]"></div>
+        </div>
+
+        <div class="relative z-10 max-w-6xl mx-auto text-center animate-on-scroll">
+
+            <h1
+                class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-8 break-keep drop-shadow-md">
+                예약도, 광고도 아닙니다.<br>
+                <span class="text-primary">'지금 바로 식사할 수 있는 식당'</span><br>
+                바로 연결합니다.
+            </h1>
+
+            <p class="text-xl md:text-2xl text-gray-200 mb-10 leading-relaxed font-light drop-shadow-sm">
+                기다림 없이 식사하고, 남는 시간엔 여유롭게 커피 한 잔.<br>
+                <strong>Neighbor Eats</strong>는 이웃끼리 나눠 먹는다는 의미에서 시작된 서비스입니다.
+            </p>
+
+            <div class="flex flex-col items-center justify-center space-y-2 mb-10 text-gray-300">
+                <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <span>점심 피크 시간, 빈 테이블은 있는데 손님은 모르는 문제</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <span>Neighbor eats 는 '맛집 찾기'가 아니라 <strong>'지금 최적의 선택'</strong>을 대신 해준다.</span>
+                </div>
+            </div>
+
+            <button onclick="document.getElementById('beta-signup').scrollIntoView({behavior: 'smooth'})"
+                class="bg-primary hover:bg-primary-hover text-white px-10 py-4 rounded-xl text-lg font-bold shadow-lg hover:shadow-2xl transition-all duration-300 mb-4 transform hover:-translate-y-1">
+                Beta 버전 사전 신청하기
+            </button>
+            <p class="text-sm text-gray-300 font-medium">* BETA 기간 동안 무료 제공</p>
+        </div>
+    </section>
+
+    <!-- 3. Differentiation Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 animate-on-scroll">
+                기존 예약·맛집 앱과 뭐가 다를까요?
+            </h2>
+
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <!-- Existing Booking -->
+                <div class="bg-gray-50 p-8 rounded-2xl hover:shadow-lg transition-all duration-300 animate-on-scroll"
+                    style="animation-delay: 0.1s">
+                    <h3 class="text-xl font-bold mb-6 text-gray-700 flex items-center gap-2">
+                        <span class="text-2xl">❌</span> 기존 예약 서비스
+                    </h3>
+                    <ul class="space-y-4 text-gray-600">
+                        <li class="flex items-start gap-3"><span class="text-red-400 font-bold">•</span>예약이 필요함</li>
+                        <li class="flex items-start gap-3"><span class="text-red-400 font-bold">•</span>사장님 직접 관리 필수
+                        </li>
+                        <li class="flex items-start gap-3"><span class="text-red-400 font-bold">•</span>광고비 선결제 구조</li>
+                        <li class="flex items-start gap-3"><span class="text-red-400 font-bold">•</span>점심 '지금' 상황 반영
+                            어려움</li>
+                    </ul>
+                </div>
+
+                <!-- Existing Delivery -->
+                <div class="bg-gray-50 p-8 rounded-2xl hover:shadow-lg transition-all duration-300 animate-on-scroll"
+                    style="animation-delay: 0.2s">
+                    <h3 class="text-xl font-bold mb-6 text-gray-700 flex items-center gap-2">
+                        <span class="text-2xl">❌</span> 기존 배달 서비스
+                    </h3>
+                    <ul class="space-y-4 text-gray-600">
+                        <li class="flex items-start gap-3"><span class="text-red-400 font-bold">•</span>배달 시간 30-40분 소요
+                        </li>
+                        <li class="flex items-start gap-3"><span class="text-red-400 font-bold">•</span>배달비 3,000-5,000원
+                            추가</li>
+                        <li class="flex items-start gap-3"><span class="text-red-400 font-bold">•</span>방문 즉시 식사 니즈 미해결
+                        </li>
+                        <li class="flex items-start gap-3"><span class="text-red-400 font-bold">•</span>식당 수수료 부담 큼</li>
+                    </ul>
+                </div>
+
+                <!-- Neighbor Eats -->
+                <div class="bg-orange-50 border-2 border-orange-200 p-8 rounded-2xl shadow-xl transform scale-105 z-10 animate-on-scroll"
+                    style="animation-delay: 0.3s">
+                    <h3 class="text-xl font-bold mb-6 text-primary flex items-center gap-2">
+                        <span class="text-2xl">⭕</span> Neighbor Eats
+                    </h3>
+                    <ul class="space-y-4 text-gray-700">
+                        <li class="flex items-start gap-3"><span class="text-primary font-bold">✓</span>즉시방문 및 대기 스트레스
+                            제거
+                        </li>
+                        <li class="flex items-start gap-3"><span class="text-primary font-bold">✓</span>선택장애 해결 및 시간확보
+                        </li>
+                        <li class="flex items-start gap-3"><span class="text-primary font-bold">✓</span><strong>매출 발생
+                                시에만 비용 발생</strong></li>
+                        <li class="flex items-start gap-3"><span class="text-primary font-bold">✓</span>점심 시간 실시간 흐름 중심
+                        </li>
+                        <li class="flex items-start gap-3"><span class="text-primary font-bold">✓</span>선결제로 노쇼 ❌, 회전율
+                            상승 ⭕</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div
+                class="relative bg-gradient-to-r from-primary to-orange-600 text-white p-8 rounded-2xl text-center shadow-xl animate-on-scroll max-w-3xl mx-auto transform hover:scale-[1.02] transition-all duration-300">
+                <!-- Decorative element for emphasis -->
+                <div
+                    class="absolute -top-3 -left-3 bg-yellow-400 text-gray-900 text-xs font-bold px-3 py-1 rounded-full shadow-lg animate-bounce">
+                    Win-Win Policy 🤝
+                </div>
+                <p class="text-lg md:text-xl font-semibold leading-relaxed drop-shadow-md">
+                    모두의 상생을 위해, <span class="text-yellow-300 underline decoration-yellow-300/50 underline-offset-4">매출
+                        대비 차등수수료</span>를 적용하여<br>
+                    <span class="text-2xl md:text-3xl font-extrabold block mt-2 tracking-tight">"팔리지 않으면 비용도
+                        없습니다."</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Scenarios -->
+    <section class="py-20 bg-[#F9FAFB]">
+        <div class="max-w-6xl mx-auto px-4 space-y-12">
+            <!-- Employee Scenario (Premium Upgrade) -->
+            <div
+                class="relative overflow-hidden bg-white border border-gray-100 p-8 md:p-16 rounded-[2.5rem] shadow-2xl transition-all animate-on-scroll">
+                <!-- Subtle Background Accent -->
+                <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-blue-50 rounded-full blur-3xl opacity-60"></div>
+
+                <div class="relative z-10">
+                    <div
+                        class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 text-blue-700 font-bold text-sm mb-6">
+                        <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+                        직장인의 잃어버린 30분을 찾아서
+                    </div>
+
+                    <h3 class="text-3xl md:text-4xl font-bold mb-12 text-gray-900 leading-tight break-keep">
+                        "점심시간 1시간.<br class="md:hidden"> 더 이상 줄 서는 데 낭비하지 마세요."
+                    </h3>
+
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+                        <!-- Connecting Line (Desktop) -->
+                        <div
+                            class="hidden md:block absolute top-12 left-10 right-10 h-0.5 bg-gradient-to-r from-blue-100 via-blue-200 to-blue-100 z-0">
+                        </div>
+
+                        <!-- Step 1 -->
+                        <div class="relative z-10 flex flex-col items-center text-center group">
+                            <div
+                                class="w-20 h-20 bg-blue-600 text-white rounded-3xl flex items-center justify-center mb-6 shadow-xl shadow-blue-200 group-hover:scale-110 transition-transform duration-300">
+                                <span class="text-4xl">📱</span>
+                            </div>
+                            <div
+                                class="bg-blue-50 text-blue-700 text-xs font-bold px-3 py-1 rounded-full mb-3 uppercase tracking-wider">
+                                Step 01</div>
+                            <h4 class="text-xl font-bold text-gray-900 mb-2">앱 실행</h4>
+                            <p class="text-gray-500 text-sm leading-relaxed">복잡한 검색 없이<br>탭 한 번으로 시작</p>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="relative z-10 flex flex-col items-center text-center group">
+                            <div
+                                class="w-20 h-20 bg-white border-2 border-blue-100 text-white rounded-3xl flex items-center justify-center mb-6 shadow-sm group-hover:border-blue-500 transition-all duration-300">
+                                <span class="text-4xl">🗺️</span>
+                            </div>
+                            <div
+                                class="bg-blue-50 text-blue-700 text-xs font-bold px-3 py-1 rounded-full mb-3 uppercase tracking-wider">
+                                Step 02</div>
+                            <h4 class="text-xl font-bold text-gray-900 mb-2">식당 확인</h4>
+                            <p class="text-gray-500 text-sm leading-relaxed">내 주변 '지금 바로'<br>입장 가능한 식당 선정</p>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="relative z-10 flex flex-col items-center text-center group">
+                            <div
+                                class="w-20 h-20 bg-white border-2 border-blue-100 text-white rounded-3xl flex items-center justify-center mb-6 shadow-sm group-hover:border-blue-500 transition-all duration-300">
+                                <span class="text-4xl">🍽️</span>
+                            </div>
+                            <div
+                                class="bg-blue-50 text-blue-700 text-xs font-bold px-3 py-1 rounded-full mb-3 uppercase tracking-wider">
+                                Step 03</div>
+                            <h4 class="text-xl font-bold text-gray-900 mb-2">대기 없이 식사</h4>
+                            <p class="text-gray-500 text-sm leading-relaxed">선결제로 예약 끝,<br>이동 중 조리, 바로 식사</p>
+                        </div>
+
+                        <!-- Step 4 -->
+                        <div class="relative z-10 flex flex-col items-center text-center group">
+                            <div
+                                class="w-20 h-20 bg-gradient-to-br from-blue-500 to-indigo-600 text-white rounded-3xl flex items-center justify-center mb-6 shadow-xl shadow-blue-200 group-hover:scale-110 transition-transform duration-300">
+                                <span class="text-4xl">☕</span>
+                            </div>
+                            <div
+                                class="bg-blue-50 text-blue-700 text-xs font-bold px-3 py-1 rounded-full mb-3 uppercase tracking-wider">
+                                Step 04</div>
+                            <h4 class="text-xl font-bold text-gray-900 mb-2">여유로운 휴식</h4>
+                            <p class="text-gray-500 text-sm leading-relaxed">아낀 시간만큼 즐기는<br>달콤한 커피 타임</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-12 pt-8 border-t border-gray-50 text-center">
+                        <p class="text-gray-400 text-sm italic font-light">"Neighbor Eats와 함께라면, 당신의 점심시간은 60분이 아닌 90분처럼
+                            느껴집니다."</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Owner Scenario (Premium Upgrade) -->
+            <div
+                class="relative overflow-hidden bg-white border border-gray-100 p-8 md:p-16 rounded-[2.5rem] shadow-2xl transition-all animate-on-scroll">
+                <!-- Subtle Gradient Background Element -->
+                <div class="absolute -top-24 -right-24 w-64 h-64 bg-green-50 rounded-full blur-3xl opacity-60"></div>
+
+                <div class="relative z-10">
+                    <div
+                        class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-green-50 text-green-700 font-bold text-sm mb-6">
+                        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                        사장님을 위한 특별한 가치
+                    </div>
+
+                    <h3 class="text-3xl md:text-4xl font-bold mb-12 text-gray-900 leading-tight break-keep">
+                        "빈 테이블이 있어도,<br class="md:hidden"> 아무것도 안 하셔도 됩니다."
+                    </h3>
+
+                    <div class="flex flex-col lg:flex-row gap-12 items-stretch">
+                        <!-- Points Grid -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 flex-[1.5]">
+                            <div
+                                class="p-6 rounded-2xl bg-gray-50 border border-gray-100 hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                                <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4">
+                                    <svg class="w-6 h-6 text-green-600" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                    </svg>
+                                </div>
+                                <h4 class="font-bold text-gray-900 mb-2">자동 노출 시스템</h4>
+                                <p class="text-gray-500 text-sm">버튼 하나로 주변 직장인에게 우리 가게가 실시간으로 노출됩니다.</p>
+                            </div>
+
+                            <div
+                                class="p-6 rounded-2xl bg-gray-50 border border-gray-100 hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                                <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4">
+                                    <svg class="w-6 h-6 text-green-600" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                    </svg>
+                                </div>
+                                <h4 class="font-bold text-gray-900 mb-2">노쇼 원천 차단</h4>
+                                <p class="text-gray-500 text-sm">사전 결제 시스템을 통해 예약 노쇼 걱정 없이 안심하고 운영하세요.</p>
+                            </div>
+
+                            <div
+                                class="p-6 rounded-2xl bg-gray-50 border border-gray-100 hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                                <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4">
+                                    <svg class="w-6 h-6 text-green-600" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </div>
+                                <h4 class="font-bold text-gray-900 mb-2">광고비 0원</h4>
+                                <p class="text-gray-500 text-sm">별도의 마케팅 설정 없이도 성과가 발생할 때만 합리적인 비용이 청구됩니다.</p>
+                            </div>
+
+                            <div
+                                class="p-6 rounded-2xl bg-gray-50 border border-gray-100 hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                                <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4">
+                                    <svg class="w-6 h-6 text-green-600" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
+                                    </svg>
+                                </div>
+                                <h4 class="font-bold text-gray-900 mb-2">성과 기반 시스템</h4>
+                                <p class="text-gray-500 text-sm">매출이 발생하지 않으면 비용도 없습니다. 리스크 없는 성장을 지원합니다.</p>
+                            </div>
+                        </div>
+
+                        <!-- Result Card -->
+                        <div
+                            class="flex-1 bg-gradient-to-br from-green-600 to-emerald-800 rounded-[2rem] p-8 md:p-10 text-white flex flex-col justify-center relative overflow-hidden shadow-2xl shadow-green-200">
+                            <!-- Artistic Background Decoration -->
+                            <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-white opacity-10 rounded-full"></div>
+                            <div class="absolute top-10 left-10 w-20 h-20 bg-green-400 opacity-20 rounded-full blur-xl">
+                            </div>
+
+                            <div class="relative z-10">
+                                <p class="text-green-100 text-lg mb-4 opacity-90">투자 시간 하루 단 5분,</p>
+                                <h4 class="text-2xl md:text-3xl font-light leading-snug mb-8">
+                                    버려지던 빈 좌석이<br>
+                                    <span class="text-4xl md:text-5xl font-extrabold text-white block mt-2">월
+                                        50만원</span>
+                                    <span
+                                        class="text-2xl md:text-3xl font-bold text-green-200 mt-1 block tracking-tight">추가
+                                        매출로 바뀝니다.</span>
+                                </h4>
+                                <div
+                                    class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-lg text-sm font-medium border border-white/20">
+                                    <span>성과 보장 시스템</span>
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Philosophy -->
+    <section class="relative py-32 md:py-48 overflow-hidden">
+        <!-- Background Image with Gradient Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="eat1.jpg" alt="Neighbor Eats Vision" class="w-full h-full object-cover">
+            <div
+                class="absolute inset-0 bg-gradient-to-br from-gray-900/90 via-gray-900/80 to-orange-900/70 backdrop-blur-[1px]">
+            </div>
+        </div>
+
+        <div class="relative z-10 max-w-4xl mx-auto px-4 text-center animate-on-scroll">
+            <h2 class="text-3xl md:text-5xl font-bold mb-12 leading-tight text-white drop-shadow-xl break-keep">
+                소상공인과 직장인,<br>
+                <span class="text-primary underline decoration-primary/30 underline-offset-8">둘 다 웃을 수 있는</span> 구조를
+                만듭니다.
+            </h2>
+
+            <div class="text-lg md:text-2xl text-gray-300 space-y-6 mb-16 font-light leading-relaxed">
+                <p class="animate-on-scroll" style="animation-delay: 0.2s">네이보이츠는 <strong>광고 플랫폼이 아닙니다.</strong></p>
+                <p class="animate-on-scroll" style="animation-delay: 0.4s">예약을 강요하지도 않습니다.</p>
+                <p class="animate-on-scroll" style="animation-delay: 0.6s">
+                    <strong>지역 상권의 점심 시간 비효율을 해결하는<br class="hidden md:block"> 따뜻한 연결 도구</strong>입니다.
+                </p>
+            </div>
+
+            <div class="inline-block relative">
+                <div class="absolute -inset-1 bg-gradient-to-r from-primary to-orange-600 rounded-2xl blur opacity-20">
+                </div>
+                <blockquote
+                    class="relative bg-white/5 backdrop-blur-md border border-white/10 py-8 px-10 italic text-xl md:text-3xl text-white text-center rounded-2xl shadow-2xl">
+                    <span class="text-primary text-4xl leading-none absolute -top-4 -left-2 opacity-50">"</span>
+                    팔리지 않으면 비용도 없다
+                    <span class="text-primary text-4xl leading-none absolute -bottom-8 -right-2 opacity-50">"</span>
+                    <span class="text-base text-gray-400 not-italic mt-6 block font-normal">- 네이보이츠가 지키는 흔들리지 않는
+                        원칙</span>
+                </blockquote>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Future Expansion (Futuristic Upgrade) -->
+    <section class="py-24 bg-gray-900 border-t border-white/5 relative overflow-hidden">
+        <!-- Floating Neon Glow Elements -->
+        <div class="absolute top-1/4 -left-20 w-80 h-80 bg-blue-600/10 rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-1/4 -right-20 w-80 h-80 bg-purple-600/10 rounded-full blur-[120px]"></div>
+
+        <div class="max-w-6xl mx-auto px-4 relative z-10">
+            <div class="text-center mb-20 animate-on-scroll">
+                <span
+                    class="inline-block px-4 py-1.5 mb-6 rounded-full bg-white/5 border border-white/10 text-primary text-sm font-bold tracking-widest uppercase">Our
+                    Vision</span>
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                    네이보이츠는<br class="hidden md:block"> <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-primary to-purple-400">앞으로
+                        더 스마트해집니다.</span>
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 mb-20">
+                <!-- AI Feature Card -->
+                <div
+                    class="group relative bg-white/5 border border-white/10 p-10 rounded-[2rem] hover:bg-white/[0.08] hover:border-primary/50 transition-all duration-500 animate-on-scroll">
+                    <div
+                        class="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-full blur-3xl group-hover:bg-blue-500/10 transition-colors">
+                    </div>
+                    <div class="relative w-20 h-20 mb-8 flex items-center justify-center">
+                        <div
+                            class="absolute inset-0 bg-blue-500/20 rounded-2xl rotate-6 group-hover:rotate-12 transition-transform">
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
+                            <span class="text-4xl">🤖</span>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-blue-400 transition-colors">AI 기반 추천
+                        & 챗</h3>
+                    <p class="text-gray-400 leading-relaxed group-hover:text-gray-300">
+                        바쁜 직장인에게 개인별 성향을 분석하여<br>
+                        '지금 가장 적절한 한 끼'를 스마트하게 골라줍니다.
+                    </p>
+                </div>
+
+                <!-- Analysis Feature Card -->
+                <div class="group relative bg-white/5 border border-white/10 p-10 rounded-[2rem] hover:bg-white/[0.08] hover:border-primary/50 transition-all duration-500 animate-on-scroll"
+                    style="animation-delay: 0.1s">
+                    <div
+                        class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors">
+                    </div>
+                    <div class="relative w-20 h-20 mb-8 flex items-center justify-center">
+                        <div
+                            class="absolute inset-0 bg-primary/20 rounded-2xl rotate-6 group-hover:rotate-12 transition-transform">
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-primary to-orange-600 rounded-2xl flex items-center justify-center shadow-lg">
+                            <span class="text-4xl">📊</span>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-primary transition-colors">POS 데이터 자율
+                        학습</h3>
+                    <p class="text-gray-400 leading-relaxed group-hover:text-gray-300">
+                        좌석 회전율, 인기 메뉴, 피크타임 등<br>
+                        복잡한 운영 데이터를 스스로 학습하고 제안합니다.
+                    </p>
+                </div>
+
+                <!-- Automation Feature Card -->
+                <div class="group relative bg-white/5 border border-white/10 p-10 rounded-[2rem] hover:bg-white/[0.08] hover:border-primary/50 transition-all duration-500 animate-on-scroll"
+                    style="animation-delay: 0.2s">
+                    <div
+                        class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-3xl group-hover:bg-emerald-500/10 transition-colors">
+                    </div>
+                    <div class="relative w-20 h-20 mb-8 flex items-center justify-center">
+                        <div
+                            class="absolute inset-0 bg-emerald-500/20 rounded-2xl rotate-6 group-hover:rotate-12 transition-transform">
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg">
+                            <span class="text-4xl">⚙️</span>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-emerald-400 transition-colors">완전 자동화
+                        시스템</h3>
+                    <p class="text-gray-400 leading-relaxed group-hover:text-gray-300">
+                        데이터가 쌓일수록 관리 요소는 최소화되며,<br>
+                        식당은 본연의 맛에만 집중할 수 있게 됩니다.
+                    </p>
+                </div>
+            </div>
+
+            <div class="text-center animate-on-scroll">
+                <p class="text-gray-500 font-medium tracking-wide">
+                    지금은 베타 시작 단계입니다. <span class="text-white">하지만 완성된 미래가 이미 당신을 기다리고 있습니다.</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Beta Signup Form (Premium Redesign) -->
+    <section id="beta-signup" class="relative bg-primary py-24 md:py-32 overflow-hidden">
+        <!-- Abstract Decorative Circles -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full -mr-48 -mt-48 blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-80 h-80 bg-orange-600/20 rounded-full -ml-40 -mb-40 blur-3xl"></div>
+
+        <div class="max-w-2xl mx-auto px-4 relative z-10">
+            <div class="text-center mb-12 animate-on-scroll">
+                <div
+                    class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-xs font-bold tracking-widest uppercase mb-6 backdrop-blur-sm">
+                    Limited Opportunity
+                </div>
+                <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6 leading-tight drop-shadow-sm break-keep">
+                    Neighbor Eats<br>Beta에 참여하세요
+                </h2>
+                <div class="h-1 w-20 bg-white/40 mx-auto rounded-full mb-6"></div>
+                <p class="text-xl text-orange-50 font-light leading-relaxed">
+                    점심시간의 흐름을 바꾸는 위대한 실험,<br class="hidden md:block"> 그 첫 번째 주인공이 되어주세요.
+                </p>
+            </div>
+
+            <form id="betaForm" name="beta-signup" data-netlify="true"
+                class="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.2)] max-w-lg mx-auto transform transition-all hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)] animate-on-scroll">
+                <div class="space-y-8">
+                    <!-- Name Input -->
+                    <div class="relative group">
+                        <label
+                            class="block text-gray-400 text-xs font-bold uppercase tracking-widest mb-2 ml-1 transition-colors group-focus-within:text-primary">Name</label>
+                        <div class="relative">
+                            <input type="text" name="name" placeholder="성함을 입력해주세요" required
+                                class="w-full px-5 py-4 bg-gray-50 border-2 border-transparent rounded-2xl focus:outline-none focus:border-primary focus:bg-white transition-all text-gray-900 font-medium placeholder:text-gray-300">
+                        </div>
+                    </div>
+
+                    <!-- Phone Input -->
+                    <div class="relative group">
+                        <label
+                            class="block text-gray-400 text-xs font-bold uppercase tracking-widest mb-2 ml-1 transition-colors group-focus-within:text-primary">Phone
+                            Number</label>
+                        <div class="relative">
+                            <input type="tel" name="phone" placeholder="010-1234-5678" maxlength="13" required
+                                class="w-full px-5 py-4 bg-gray-50 border-2 border-transparent rounded-2xl focus:outline-none focus:border-primary focus:bg-white transition-all text-gray-900 font-medium placeholder:text-gray-300">
+                        </div>
+                    </div>
+
+                    <!-- Type Selection -->
+                    <div>
+                        <label class="block text-gray-400 text-xs font-bold uppercase tracking-widest mb-3 ml-1">Member
+                            Type</label>
+                        <div class="grid grid-cols-2 gap-4">
+                            <label class="relative cursor-pointer group">
+                                <input type="radio" name="userType" value="직장인" required class="peer sr-only">
+                                <div
+                                    class="px-4 py-5 rounded-2xl border-2 border-gray-100 bg-gray-50 text-center transition-all peer-checked:border-primary peer-checked:bg-white peer-checked:shadow-lg hover:bg-white hover:border-gray-200">
+                                    <span class="block text-2xl mb-2">🏢</span>
+                                    <span
+                                        class="block font-bold text-gray-500 peer-checked:text-primary transition-colors">직장인</span>
+                                </div>
+                            </label>
+                            <label class="relative cursor-pointer group">
+                                <input type="radio" name="userType" value="사장님" required class="peer sr-only">
+                                <div
+                                    class="px-4 py-5 rounded-2xl border-2 border-gray-100 bg-gray-50 text-center transition-all peer-checked:border-primary peer-checked:bg-white peer-checked:shadow-lg hover:bg-white hover:border-gray-200">
+                                    <span class="block text-2xl mb-2">👨‍🍳</span>
+                                    <span
+                                        class="block font-bold text-gray-500 peer-checked:text-primary transition-colors">사장님</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="pt-4">
+                        <button type="submit"
+                            class="group relative w-full bg-gray-900 hover:bg-black text-white py-5 rounded-2xl font-extrabold text-xl shadow-2xl transition-all duration-300 transform hover:-translate-y-1 active:scale-95 overflow-hidden">
+                            <span class="relative z-10">지금 바로 참여하기</span>
+                        </button>
+                        <p class="text-[10px] text-gray-400 text-center mt-4">
+                            * 개인정보는 베타 테스트 안내 목적으로만 사용됩니다.
+                        </p>
+                    </div>
+                </div>
+            </form>
+
+            <div class="mt-12 text-center animate-on-scroll">
+                <div class="inline-block px-6 py-3 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20">
+                    <p class="text-white text-sm font-medium">
+                        🎁 베타 참여자 전원 <span class="text-yellow-300 font-bold">정식 버전 우선 혜택</span> 제공
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 text-center text-sm">
+        <div class="max-w-6xl mx-auto px-4">
+            <p class="mb-2 font-bold text-gray-300">Neighbor Eats</p>
+            <p>&copy; 2026 Neighbor Eats. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
