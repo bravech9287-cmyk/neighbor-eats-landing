@@ -109,3 +109,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const animatedElements = document.querySelectorAll('.animate-on-scroll');
     animatedElements.forEach(el => observer.observe(el));
 });
+// ************************************************************
+// 5. 플로팅 CTA 버튼 제어
+// ************************************************************
+document.addEventListener('DOMContentLoaded', () => {
+    const floatingCta = document.getElementById('floating-cta');
+    const betaSection = document.getElementById('beta-signup');
+
+    if (floatingCta && betaSection) {
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const betaSectionTop = betaSection.offsetTop;
+            const windowHeight = window.innerHeight;
+
+            // 1. 400px 이상 스크롤했을 때 나타남
+            // 2. 실제 신청 섹션에 도달하기 전까지만 표시 (화면 하단이 신청 섹션 상단에 닿을 즈음 숨김)
+            if (scrollY > 400 && (scrollY + windowHeight) < betaSectionTop + 200) {
+                floatingCta.classList.add('visible');
+            } else {
+                floatingCta.classList.remove('visible');
+            }
+        });
+    }
+});
