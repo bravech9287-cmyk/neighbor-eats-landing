@@ -110,3 +110,47 @@ document.addEventListener('DOMContentLoaded', () => {
     animatedElements.forEach(el => observer.observe(el));
 });
 
+// ************************************************************
+// 6. 비디오 모달 제어
+// ************************************************************
+document.addEventListener('DOMContentLoaded', () => {
+    const videoBtn = document.getElementById('open-video');
+    const videoModal = document.getElementById('video-modal');
+    const closeBtn = document.querySelector('.close-modal');
+    const video = document.getElementById('intro-video');
+
+    if (videoBtn && videoModal && video && closeBtn) {
+        // 모달 열기
+        videoBtn.addEventListener('click', () => {
+            videoModal.classList.add('active');
+            video.play();
+            document.body.style.overflow = 'hidden'; // 스크롤 방지
+        });
+
+        // 모달 닫기 함수
+        const closeModal = () => {
+            videoModal.classList.remove('active');
+            video.pause();
+            video.currentTime = 0; // 영상 초기화
+            document.body.style.overflow = ''; // 스크롤 허용
+        };
+
+        // 닫기 버튼 클릭
+        closeBtn.addEventListener('click', closeModal);
+
+        // 배경 클릭 시 닫기
+        videoModal.addEventListener('click', (e) => {
+            if (e.target === videoModal) {
+                closeModal();
+            }
+        });
+
+        // ESC 키 누를 때 닫기
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    }
+});
+
